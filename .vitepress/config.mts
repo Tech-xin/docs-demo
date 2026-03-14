@@ -44,7 +44,7 @@ export default defineConfig({
       { text: '八股文', link: '/markdown-examples' },
       { text: '面经', link: '/markdown-examples' },
       { text: 'leetcode', link: '/markdown-examples' },
-      { text: '待办事项', link: '/todolist.html' }
+      { text: '待办事项', link: '/todolist' }
     ],
 
     sidebar: [
