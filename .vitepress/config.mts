@@ -6,6 +6,7 @@ export default defineConfig({
   title: "My Awesome Project",
   description: "A VitePress Site",
   themeConfig: {
+
     // 设置搜索框的样式
     search: {
       provider: "local",
@@ -42,7 +43,8 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: '八股文', link: '/markdown-examples' },
       { text: '面经', link: '/markdown-examples' },
-      { text: 'leetcode', link: '/markdown-examples' }
+      { text: 'leetcode', link: '/markdown-examples' },
+      { text: '待办事项', link: '/todolist.html' }
     ],
 
     sidebar: [
