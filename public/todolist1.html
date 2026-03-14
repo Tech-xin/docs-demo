@@ -11,6 +11,10 @@
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Playfair+Display:wght@600;700&display=swap"
         rel="stylesheet">
     <style>
+        .task-item:active {
+            opacity: 0.5;
+        }
+
         :root {
             --primary-bg: #faf8f3;
             --card-bg: #ffffff;
@@ -377,6 +381,7 @@
     </div>
 
     <script>
+
         // 获取DOM元素
         const taskInput = document.getElementById('taskInput');
         const addBtn = document.getElementById('addBtn');
@@ -387,7 +392,7 @@
 
         // 任务数组
         let tasks = [];
-
+        let dragTaskId = null;
         // 从localStorage加载任务
         function loadTasks() {
             const savedTasks = localStorage.getItem('todoTasks');
@@ -467,13 +472,39 @@
                 tasks.forEach(task => {
                     const li = document.createElement('li');
                     li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                    li.draggable = true;
 
                     li.innerHTML = `
                         <div class="task-checkbox" data-id="${task.id}"></div>
                         <span class="task-text">${escapeHtml(task.text)}</span>
                         <button class="delete-btn" data-id="${task.id}">删除</button>
+                        
                     `;
+                    // 开始拖动
+                    li.addEventListener('dragstart', () => {
+                        dragTaskId = task.id;
+                    });
 
+                    // 允许拖放
+                    li.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                    });
+
+                    // 放下时改变顺序
+                    li.addEventListener('drop', () => {
+
+                        const targetId = task.id;
+
+                        const dragIndex = tasks.findIndex(t => t.id === dragTaskId);
+                        const targetIndex = tasks.findIndex(t => t.id === targetId);
+
+                        const draggedTask = tasks.splice(dragIndex, 1)[0];
+                        tasks.splice(targetIndex, 0, draggedTask);
+
+                        saveTasks();
+                        renderTasks();
+
+                    });
                     taskList.appendChild(li);
                 });
             }
