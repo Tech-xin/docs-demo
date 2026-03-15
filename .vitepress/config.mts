@@ -65,7 +65,7 @@ export default defineConfig({
           { text: '25.12.8-汇丰eng', link: '/markdown-examples' },
           { text: '1.24-好未来', link: '/haoweilai' },
           { text: '2.24-微众银行+海辰储能', link: '/weizhong.md' },
-          { text: '3.13-特斯拉前端', link: '/3-13-Tesla' }
+          { text: '3.13-特斯拉前端', link: '/3.13特斯拉前端面试' }
 
         ]
       }
