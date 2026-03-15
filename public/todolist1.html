@@ -352,7 +352,8 @@
 
         <div class="input-section">
             <div class="input-group">
-                <input type="text" id="taskInput" placeholder="今天要做什么？" autocomplete="off">
+                <input type="text" id="taskInput" placeholder="任务名称" autocomplete="off">
+                <input type="text" id="taskUrl" placeholder="测评 / 笔试链接">
                 <button id="addBtn">添加</button>
             </div>
         </div>
@@ -385,6 +386,7 @@
         // 获取DOM元素
         const taskInput = document.getElementById('taskInput');
         const addBtn = document.getElementById('addBtn');
+        const taskUrlInput = document.getElementById('taskUrl');
         const taskList = document.getElementById('taskList');
         const totalTasksEl = document.getElementById('totalTasks');
         const completedTasksEl = document.getElementById('completedTasks');
@@ -410,7 +412,7 @@
         // 添加任务
         function addTask() {
             const taskText = taskInput.value.trim();
-
+            const taskUrl = taskUrlInput.value.trim();
             if (taskText === '') {
                 taskInput.focus();
                 return;
@@ -419,6 +421,7 @@
             const task = {
                 id: Date.now(),
                 text: taskText,
+                url: taskUrl,
                 completed: false
             };
 
@@ -426,6 +429,7 @@
             saveTasks();
             renderTasks();
             taskInput.value = '';
+            taskUrlInput.value = '';
             taskInput.focus();
         }
 
@@ -476,7 +480,10 @@
 
                     li.innerHTML = `
                         <div class="task-checkbox" data-id="${task.id}"></div>
-                        <span class="task-text">${escapeHtml(task.text)}</span>
+                       
+                      <a class="task-text" href="${task.url}" target="_blank">
+    ${escapeHtml(task.text)}
+</a>
                         <button class="delete-btn" data-id="${task.id}">删除</button>
                         
                     `;
