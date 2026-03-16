@@ -5,6 +5,7 @@ export default defineConfig({
   base: '/docs-demo/',
   title: "My Awesome Project",
   description: "A VitePress Site",
+  head: [["link", { rel: "icon", href: "/docs-demo/corgi.svg" }]],
   themeConfig: {
 
     // 设置搜索框的样式
