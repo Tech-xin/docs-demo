@@ -56,7 +56,7 @@ export default defineConfig({
           { text: '浏览器原理', link: '/api-examples' },
           { text: 'HTML', link: '/api-examples' },
           { text: 'CSS', link: '/api-examples' },
-          { text: 'JavaScript', link: '/api-examples' }
+          { text: 'JavaScript', link: '/JavaScript知识（整理中...）' }
 
         ]
       },
